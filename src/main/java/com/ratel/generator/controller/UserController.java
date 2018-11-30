@@ -5,6 +5,7 @@ import com.ratel.generator.entity.User;
 import com.ratel.generator.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -43,5 +44,17 @@ public class UserController {
         iUserService.save(user);
         return "success";
     }
+
+    @GetMapping("/selectByName/{name}")
+    public User selectByName(@PathVariable String name) {
+
+        System.out.println(name);
+
+        User user = iUserService.selectByName(name);
+
+        return user;
+    }
+
+
 
 }
