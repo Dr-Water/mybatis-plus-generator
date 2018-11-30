@@ -1,7 +1,7 @@
 package com.ratel.generator.service;
 
-import com.ratel.generator.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.ratel.generator.entity.User;
 
 /**
  * <p>
