@@ -3,11 +3,10 @@ package com.ratel.generator.controller;
 
 import com.ratel.generator.entity.User;
 import com.ratel.generator.service.IUserService;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,13 +25,14 @@ public class UserController {
     @Autowired
     private IUserService iUserService;
 
+    @ApiOperation(value="获取所有用户")
     @GetMapping("/list")
     public List<User> list() {
         List<User> users = iUserService.list(null);
         return users;
     }
 
-
+    @ApiOperation(value="保存用户")
     @GetMapping("/save")
     public String save() {
         User user = new User();
@@ -44,16 +44,22 @@ public class UserController {
         return "success";
     }
 
+    @ApiOperation(value="根据用户名获取用户", notes="根据用户的姓名获取用户")
     @GetMapping("/selectByName/{name}")
-    public User selectByName(@PathVariable String name) {
-
+    public User selectByName(@PathVariable(required = false) String name) {
         System.out.println(name);
-
         User user = iUserService.selectByName(name);
-
         return user;
     }
 
+    //@ApiOperation(value="根据用户名获取用户", notes="根据用户的姓名获取用户")
+    //@ApiImplicitParam(name = "name", value = "用户名")
+    @ApiOperation("根据用户名获取用户")
+    @GetMapping("/selectByName2")
+    public User selectByName2(@RequestParam(required = false) String name) {
+        User user = iUserService.selectByName(name);
+        return user;
+    }
 
 
 }

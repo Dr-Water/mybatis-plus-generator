@@ -27,3 +27,8 @@ spring:
 mybatis-plus:
   mapper-locations: classpath:mapper/generator/*Mapper.xml
   type-aliases-package: com.ratel.generator.entity
+
+
+logging:
+  level:
+    com.ratel.generator.mapper: debug
